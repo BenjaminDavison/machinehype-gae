@@ -1,0 +1,122 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+	<script src="js/jschat.js"></script>
+	
+    <!-- Le styles -->
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    
+    
+
+    <title>User test</title>
+    
+	<!-- demo.css for this page only, make things pretty -->
+
+	
+	<!-- Page player core CSS -->
+	<link rel="stylesheet" type="text/css" href="stylesheets/page-player.css" />
+	
+	<!-- soundManager.useFlashBlock: related CSS -->
+	<link rel="stylesheet" type="text/css" href="flashblock/flashblock.css" />
+	
+	<!-- optional: annotations/sub-tracks/notes, and alternate themes -->
+	<link rel="stylesheet" type="text/css" href="stylesheets/optional-annotations.css" />
+	<link rel="stylesheet" type="text/css" href="stylesheets/optional-themes.css" />
+	
+	<style type="text/css">
+	ul.playlist li .comment {font-size:0.65em;opacity:0.5}
+	</style>
+	
+	<!-- soundManager API -->
+	<script src="script/soundmanager2.js"></script>
+	
+	<script>
+	
+	/* --------
+	
+	  Config override: This demo uses shiny flash 9 stuff, overwriting Flash 8-based defaults
+	  Alternate PP_CONFIG object must be defined before soundManager.onready()/onload() fire.
+	  Alternately, edit the config in page-player.js to simply use the values below by default
+	
+	-------- */
+	
+	// demo only, but you can use these settings too..
+	soundManager.flashVersion = 9;
+	soundManager.preferFlash = true; // for visualization effects
+	soundManager.useHighPerformance = true; // keep flash on screen, boost performance
+	soundManager.wmode = 'transparent'; // transparent SWF, if possible
+	soundManager.useFastPolling = true; // increased JS callback frequency
+	soundManager.url = '/swf/';
+	
+	// custom page player configuration
+	
+	var PP_CONFIG = {
+	  autoStart: false,      // begin playing first sound when page loads
+	  playNext: true,        // stop after one sound, or play through list until end
+	  useThrottling: false,  // try to rate-limit potentially-expensive calls (eg. dragging position around)</span>
+	  usePeakData: true,     // [Flash 9 only] whether or not to show peak data (left/right channel values) - nor noticable on CPU
+	  useWaveformData: false,// [Flash 9 only] show raw waveform data - WARNING: LIKELY VERY CPU-HEAVY
+	  useEQData: false,      // [Flash 9 only] show EQ (frequency spectrum) data
+	  useFavIcon: false     // try to apply peakData to address bar (Firefox + Opera) - performance note: appears to make Firefox 3 do some temporary, heavy disk access/swapping/garbage collection at first(?) - may be too heavy on CPU
+	}
+	
+	</script>
+	
+	<!-- Page player main script -->
+	<script src="script/page-player.js"></script>
+	
+	<!-- optional: Metadata UI prototype (not needed unless you want the bottom-most demo bits) -->
+	<script src="script/optional-page-player-metadata.js"></script>
+
+</head>
+
+<body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Machine Hype: </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="popular_songs">Popular Songs</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div id="content">
+         {% block content %}{% endblock %}
+    </div>
+    
+
+	
+     <div id="footer">
+        {% block footer %}
+        <hr />
+        {% endblock %}
+    </div>
+</body>
+
+</html>

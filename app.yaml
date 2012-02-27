@@ -1,0 +1,25 @@
+application: machinehype
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: no
+
+handlers:
+- url: /stylesheets
+  static_dir: stylesheets
+  
+- url: /bootstrap
+  static_dir: bootstrap
+ 
+- url: /script
+  static_dir: script
+  
+- url: /swf
+  static_dir: swf
+  
+- url: /flashblock
+  static_dir: flashblock
+ 
+- url: /.*
+  script: helloworld.py
+ 

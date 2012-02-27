@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+<!-- <head>
+<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+</head> -->
+<!-- <html> -->
+  
+  	{% block content %}
+  	
+  	<div class="container">
+  		
+		<h1>New Songs:</h1>
+		<p>
+			<div class="span8">
+				<ul class="playlist dark">
+					{% for song in songs %}
+					<p>
+						<li>
+							<a href="{{ song.mp3_url }}">{{ song.title }}: {{ song.likes }} People Like This</a>
+							<p>
+ 								<form action="/likesong?key={{ song.key }}" method="post">
+									<input type="submit" value="Like Song" />
+								</form> 
+							</p>
+						</li>
+					</p>
+					{% endfor %}
+				</ul>
+			</div>  		
+  		
+
+	
+	    <form action="/addsong" method="post">
+	      <div><h2>MP3 URL</h2><textarea name="mp3_url" rows="1" cols="60"></textarea></div>
+	      <div><h2>Song Title</h2><textarea name="title" rows="1" cols="60"></textarea></div>	      
+	      <div><input type="submit" value="Add Song"></div>
+	    </form>
+	
+	    <a href="{{ url }}">{{ url_linktext }}</a>
+    
+    </div>
+  
+<!-- </html> -->
+{% endblock content %}
