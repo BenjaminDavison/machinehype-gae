@@ -21,7 +21,7 @@ from google.appengine.api import users
 from ndb import key, model
 from google.appengine.ext.webapp import template
 from webapp2_extras.appengine.auth.models import User
-from controllers import MainPage, SiteList, AddSong, AddSite, LikeSong, PopularSongs, UserSongs
+from controllers import MainPage, SiteList, AddSong, AddSite, LikeSong, PopularSongs, UserSongs, AddUserPrefs
 
 #routing
 application = webapp2.WSGIApplication([
@@ -32,6 +32,7 @@ application = webapp2.WSGIApplication([
     ('/likesong', LikeSong),
     ('/popular_songs', PopularSongs),
     ('/usersongs', UserSongs),
+    ('/adduser', AddUserPrefs),
 ], debug=True)
 
 def main():

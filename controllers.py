@@ -56,13 +56,7 @@ def GetDistinctTopLevelModel(model):
     return set(model.all())
 
 class MainPage(webapp2.RequestHandler):
-    def get(self):
-        #was not able to get a hook into the login system
-        #so I just make sure there is a userprefs model,
-        #demo purposes
-        user1 = users.get_current_user()
-        UserPrefs(user=user1).put()
-        
+    def get(self):       
         site_name = self.request.get('site_name')
         sites = RetriveSongsBySite(site_name)
         url, url_linktext = IsUserLoggedIn(self.request.uri)
@@ -198,5 +192,17 @@ class PopularSongs(webapp2.RequestHandler):
             'url_linktext': url_linktext,
         }
         
+        path = os.path.join(os.path.dirname(__file__), 'popular.html')
+        self.response.out.write(template.render(path, template_values))
+        
+class AddUserPrefs(webapp2.RequestHandler):
+    def get(self):
+        #was not able to get a hook into the login system
+        #so I just make sure there is a userprefs model,
+        #demo purposes
+        user1 = users.get_current_user():
+            UserPrefs(user=user1).put()
+        
+        template = {}    
         path = os.path.join(os.path.dirname(__file__), 'popular.html')
         self.response.out.write(template.render(path, template_values))
