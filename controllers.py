@@ -143,8 +143,8 @@ class LikeSong(webapp2.RequestHandler):
         s = Song.get(self.request.get('key'))
         currentUser = UserPrefs.all().filter('user =', user).fetch(1)
         
-        print s.key()
-        print currentUser[0].songs
+#        print s.key()
+#        print currentUser[0].songs
         #not liked by person so add it to their list and bump likes
         if s.key() not in currentUser[0].songs:
             currentUser[0].songs.append(s.key())
@@ -156,7 +156,7 @@ class LikeSong(webapp2.RequestHandler):
             #liked by person so remove it from their list
             currentUser[0].songs.remove(s.key())
             currentUser[0].put()
-            
+             
             s.likes -= 1
             s.put()
          

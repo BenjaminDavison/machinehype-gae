@@ -23,6 +23,7 @@ from google.appengine.ext.webapp import template
 from webapp2_extras.appengine.auth.models import User
 from controllers import MainPage, SiteList, AddSong, AddSite, LikeSong, PopularSongs, UserSongs
 
+#routing
 application = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/sitelist', SiteList),
