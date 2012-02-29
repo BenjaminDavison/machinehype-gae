@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div class="container">
+		<p><h1>Site List:</h1></p>
+			{% for site in sites %}
+				<a href="/?site_name={{ site.site_name }}">{{ site.site_name }}</a>
+			{% endfor %}
+	</div>
+{% endblock content %}
