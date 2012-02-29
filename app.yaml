@@ -1,5 +1,5 @@
 application: machinehype
-version: 1
+version: 2
 runtime: python27
 api_version: 1
 threadsafe: no
@@ -21,5 +21,5 @@ handlers:
   static_dir: flashblock
  
 - url: /.*
-  script: helloworld.py
+  script: main.py
  

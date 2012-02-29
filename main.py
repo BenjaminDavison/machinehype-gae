@@ -1,33 +1,40 @@
-#!/usr/bin/env python
-#
-# Copyright 2007 Google Inc.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
-from google.appengine.ext import webapp
-from google.appengine.ext.webapp import util
+''' 
+    This isn't the nicest code I have ever written, I wrote this in a few hours
+    to test out google appengine webapp2 - so everything is squished together
+    in one file with very little regards to classes but it does have some niceties,
+    also I could not get some of the nosql concepts working in the limited time
+    I had to write this app.
+    
+    Also no pagination or personable likes, I did see a toolkit on github that had a bunch of other
+    little nicknacks but that would of been a bit overwhelming for the little time I had 
+'''
 
+import cgi
+import datetime
+import urllib
+import wsgiref.handlers
+import webapp2
+import os
 
-class MainHandler(webapp.RequestHandler):
-    def get(self):
-        self.response.out.write('Hello world!')
+from google.appengine.ext import db
+from google.appengine.api import users
+from ndb import key, model
+from google.appengine.ext.webapp import template
+from webapp2_extras.appengine.auth.models import User
+from controllers import MainPage, SiteList, AddSong, AddSite, LikeSong, PopularSongs, UserSongs
 
+application = webapp2.WSGIApplication([
+    ('/', MainPage),
+    ('/sitelist', SiteList),
+    ('/addsong', AddSong),
+    ('/addsite', AddSite),
+    ('/likesong', LikeSong),
+    ('/popular_songs', PopularSongs),
+    ('/usersongs', UserSongs),
+], debug=True)
 
 def main():
-    application = webapp.WSGIApplication([('/', MainHandler)],
-                                         debug=True)
-    util.run_wsgi_app(application)
-
+    application.run()
 
 if __name__ == '__main__':
     main()
